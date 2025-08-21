@@ -92,6 +92,7 @@ flutter pub get
 flutter run
 ```
 
+
 ## Security Notes
 - Never commit real secrets. Keep your actual `.env` local only. The repo ignores `*.env` by default.
 - If a secret was ever committed, rotate it immediately and consider purging it from VCS history.
@@ -103,6 +104,11 @@ flutter run
 - The assistant responds with a JSON that updates section order and configuration.
 
 ## Using AI prompts
+
+To use the app:
+1. Tap the **Edit** button at the top of the screen to enable prompt input mode
+2. Enter your natural-language prompt in the text field that appears
+3. The app will send your prompt to the AI service and update the layout accordingly
 
 You can copy/paste these example prompts:
 
@@ -116,6 +122,8 @@ You can copy/paste these example prompts:
 - Change all "View All" button colors to Red.
 - In Product Categories, set cross_axis_count to 4.
 - Increase the spacing between grid items in Product Categories: set cross_axis_spacing to 40 and main_axis_spacing to 40.
+- Remove all Items from the Trending Products section.
+- Remove the Trending Products section entirely.
 
 Tips:
 - Be specific about which section you are modifying (e.g., carousel, product_category, scheme, hot_trending_products).
