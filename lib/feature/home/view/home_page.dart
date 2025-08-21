@@ -368,45 +368,51 @@ class HomeScreen extends StatelessWidget {
                 itemCount: viewModel.trending.length,
                 itemBuilder: (context, index) {
                   final trend = viewModel.trending[index];
-                  return Stack(
+                  return Column(
                     children: [
-                      Column(
-                        children: [
-                          SizedBox(
-                            width: 100,
-                            height: 100,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
-                                trend['image']!,
-                                fit: BoxFit.cover,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  trend['image']!,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: 4),
-                          Flexible(
-                            child: Text(
-                              trend['title']!,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                            Positioned(
+                              top: 0,
+                              left: 0,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                color: Colors.orange,
+                                child: Text(
+                                  trend['discount']!,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 4,
-                          ),
-                          color: Colors.orange,
-                          child: Text(
-                            trend['discount']!,
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          ),
+                      SizedBox(height: 4),
+                      Flexible(
+                        child: Text(
+                          trend['title']!,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
