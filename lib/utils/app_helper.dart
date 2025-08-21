@@ -27,6 +27,19 @@ class AppHelper {
   }
 
   static Color hexToColor(String hexString) {
-    return Color(int.parse(hexString.substring(1, 7), radix: 16) + 0xFF000000);
+    try {
+      final s = hexString.trim();
+      if (!s.startsWith('#') || (s.length != 7 && s.length != 9)) {
+        return Colors.black; // default fallback
+      }
+      // Support #RRGGBB and #AARRGGBB
+      if (s.length == 7) {
+        return Color(int.parse(s.substring(1, 7), radix: 16) + 0xFF000000);
+      } else {
+        return Color(int.parse(s.substring(1, 9), radix: 16));
+      }
+    } catch (_) {
+      return Colors.black;
+    }
   }
 }

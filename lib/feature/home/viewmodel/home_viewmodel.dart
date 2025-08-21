@@ -6,12 +6,17 @@ import '../../../services/openai_service.dart';
 
 class HomeViewModel extends GetxController {
   final OpenAIService _openAIService = OpenAIService(
-    dotenv.env['CHATGPT_APIKEY'] ?? "key",
+    dotenv.env['CHATGPT_APIKEY'] ?? '',
   );
 
   // Reactive state
   final isLoading = false.obs;
   final showInput = false.obs;
+
+  // Simple rate limiting
+  DateTime _lastRequestTime = DateTime.fromMillisecondsSinceEpoch(0);
+  static const Duration _minInterval = Duration(seconds: 3);
+  static const int _maxPromptLength = 500;
 
   // Data (kept non-reactive where it makes sense)
   final List<Map<String, dynamic>> promotionItems = [
@@ -165,12 +170,20 @@ class HomeViewModel extends GetxController {
 
   // Public method used by UI to process prompt
   Future<bool> processPrompt(String prompt) async {
-    if (prompt.trim().isEmpty) return false;
+    final sanitized = prompt.trim();
+    if (sanitized.isEmpty) return false;
+    if (sanitized.length > _maxPromptLength) return false;
+
+    final now = DateTime.now();
+    if (now.difference(_lastRequestTime) < _minInterval) {
+      return false; // Too soon, rate-limited
+    }
 
     try {
       isLoading.value = true;
+      _lastRequestTime = now;
       final response = await _openAIService.processPrompt(
-        prompt: prompt,
+        prompt: sanitized,
         currentConfig: currentConfig,
       );
 
