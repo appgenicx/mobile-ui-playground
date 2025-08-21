@@ -103,18 +103,17 @@ flutter run
 - The assistant responds with a JSON that updates section order and configuration.
 
 ## Using AI prompts
-Important: Colors must be hex codes (e.g., #007AFF for blue, #FF3B30 for red, #FF2D55 for pink).
 
 You can copy/paste these example prompts:
 
-- Change the location text to "California", set the location icon to "person", and change the icon color to #007AFF.
-- Change the search bar background fill color to #34C759, set its hint text to "Search parts", and set the border radius to 5.
+- Change the location text to "California", set the location icon to "person", and change the icon color to Pink.
+- Change the search bar background fill color to Black, set its hint text to "Search parts", and set the border radius to 5.
 - Move the carousel to the bottom of the screen.
 - Change the "Product Categories" section title to "Product".
-- In the carousel, change the "BUY NOW" button color to #FF3B30.
-- In the Special Offers section, change the "Add to Cart" button color to #FF2D55.
+- In the carousel, change the "BUY NOW" button color to Green.
+- In the Special Offers section, change the "Add to Cart" button color to Yellow.
 - Set the carousel height to 100.
-- Change all "View All" button colors to #000000.
+- Change all "View All" button colors to Red.
 - In Product Categories, set cross_axis_count to 4.
 - Increase the spacing between grid items in Product Categories: set cross_axis_spacing to 40 and main_axis_spacing to 40.
 
@@ -124,5 +123,5 @@ Tips:
 - If a change affects multiple sections (e.g., "View All" buttons), say so explicitly.
 
 ## Tech
-- Flutter, GetX, http, dotenv
+- Flutter, GetX
 - Carousel for promos, simple validation and rate limiting in ViewModel
